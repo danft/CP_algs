@@ -41,7 +41,7 @@ void bellman_ford() {
 			for(int j = 0;j <adj[u].size();j++)
 			{
 				int v=adj[u][j].v;
-				if(phi[v]>phi[u]+adj[u][j].cost && adj[u][i].cap)
+				if(phi[v]>phi[u]+adj[u][j].cost && adj[u][j].cap)
 				{
 					phi[v]=phi[u]+adj[u][j].cost;
 				}
