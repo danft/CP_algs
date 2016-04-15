@@ -1,3 +1,5 @@
+#http://bit.do/danft
+
 if ! [ -a "$HOME/.vimrc" ]
 then
 	wget tiny.cc/danft2 -O "$HOME/.vimrc" &> /dev/null
