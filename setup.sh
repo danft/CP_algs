@@ -6,7 +6,7 @@ then
 fi
 if ! [ -a "$HOME/te.cpp" ]
 then
-	wget tiny.cc/danft2 -O "$HOME/te.cpp" &> /dev/null
+	wget tiny.cc/danft -O "$HOME/te.cpp" &> /dev/null
 fi
 
 setxkbmap -layout "us"
