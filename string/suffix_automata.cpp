@@ -20,7 +20,7 @@ class suffix_automata_t {
 	};
 
 	public:
-	static const int N = 2 * 50010;
+	static const int N = 2 * 50010; /*50010 is max length of the string*/
 	node_t st[N];
 	int size, p;
 
@@ -50,13 +50,13 @@ class suffix_automata_t {
 			int q = st[p].next[c];
 			if (st[p].len +1 == st[q].len)
 				st[curr].link = q;
-			else { /*the equivalence class q has the wrong first letter*/
+			else { 
 				int cl = size++;
 				st[cl] = st[q];
 				st[cl].len = st[p].len + 1;
 				for (;p != -1 && st[p].next.count(c) && st[p].next[c] == q; p = st[p].link)
 					st[p].next[c] = cl;
-				st[curr].link = st[q].link= cl;
+				st[curr].link = st[q].link = cl;
 			}
 		}
 		p = curr;
