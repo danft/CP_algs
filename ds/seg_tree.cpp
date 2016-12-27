@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 
 const int N = 4010001;
+/*
+TODO: add support for lazy propagation 
+ */
 
 /*
 T must have an empty constructor
