@@ -47,13 +47,13 @@ int build(int l, int r) {
 // point update
 // returns the new root index
 int update(int p, int l, int r, int ux) {
+	int u = tree_size++;
 	if (l==r) {
-		tree[tree_size] = node(-1, -1, v[l]);
-		return tree_size++;
+		tree[u] = node(-1, -1, v[l]);
+		return u;
 	}
 
 	int mi = (l+r)/2;
-	int u = tree_size++;
 	tree[u] = tree[p];
 
 	if (ux > mi)
@@ -65,8 +65,6 @@ int update(int p, int l, int r, int ux) {
 
 	return u;
 }
-
-// query
 
 int que(int p, int l, int r, int x) {
 	if (l==r) {
@@ -80,51 +78,4 @@ int que(int p, int l, int r, int x) {
 	else ret = que(tree[p].l, l, mi, x);
 
 	return ret;
-}
-
-int main(void) {
-	ios::sync_with_stdio(false);
-	cin >> n;
-	vi nxt(n+1, n), prv(n+1, -1);
-
-	For (i,0,n) {
-		cin >> vec[i];
-
-		if (prv[vec[i]] != -1) {
-			nxt[prv[vec[i]]] = i;
-		}
-		else
-			v[i] = 1;
-
-		prv[vec[i]] = i;
-	}
-
-	vi root(n);
-	root[0] = build (0, n-1);
-
-	for (int i = 0; i<n-1; ++i) {
-		v[i] = 0;
-		root[i+1] = update(root[i], 0, n-1, i);
-
-		if (nxt[i] < n) {
-			v[nxt[i]] = 1;
-			root[i+1] = update(root[i+1], 0, n-1, nxt[i]);
-		}
-	}
-
-	for (int i = 1; i<=n; i++) {
-		int l = 0, ans = 0;	
-		//cout << i <<":\n";
-		while (l < n) {
-			//cout << l << "# ";
-			l = que(root[l], 0, n-1, i) + 1;
-			++ans;
-		}
-		cout << ans << " ";
-	}
-	cout << '\n';
-
-	
-	
-	return 0;
 }
